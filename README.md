@@ -2,7 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## 已安装的第三方库
+1. antd: 主要的UI库
+2. mobx && mobx-react: 主要的状态管理库
+3. react-dom && react-router-config && react-router-dom: 路由控制库
+4. tailwindcss: CSS快捷样式库
+5. @craco/craco: 修改create-react-app内部webpack配置的库
+6. @umijs/fabric: 蚂蚁的eslint、styless和prettier的代码校验库
 
 In the project directory, you can run:
 
