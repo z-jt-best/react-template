@@ -9,13 +9,22 @@ import { Redirect } from 'react-router-dom'
 const constantRoutes = [
     {
         path: '/',
-        exact: true,
-        component: Home,
+        render: route => {
+            const { isExact } = route.match
+            return isExact ? <Redirect to="/home" /> : <SelfLayout {...route} />
+        },
+        routes: [
+            {
+                path: '/home',
+                component: Home,
+            },
+            {
+                path: '/about',
+                component: About,
+            },
+        ],
     },
-    {
-        path: '/about',
-        component: About,
-    },
+
     {
         path: '/good',
         render: route => {

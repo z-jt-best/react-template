@@ -1,51 +1,46 @@
-import React, { useState } from 'react'
-import { Button, Input, Form, DatePicker } from 'antd'
+import React, { useState, useEffect, createContext, useContext } from 'react'
+import { Button, Input, Form, DatePicker, Card } from 'antd'
 import moment from 'moment'
+import { makeAutoObservable, autorun } from 'mobx'
+import { observer, useLocalObservable } from 'mobx-react'
+import { useHistory } from 'react-router-dom'
+import SelfMenuList from '@/components/SelfMenuList'
 
-const { RangePicker } = DatePicker
+import RootContext from '@/store'
 
-const Home = () => {
-    const [searchForm, setSearchForm] = useState({ username: '123', startTime: '', endTime: '' })
-
-    const onFinish = value => {
-        console.log(value)
-    }
+const Home = observer(function Home() {
+    const rootStore = useContext(RootContext)
+    const history = useHistory()
 
     return (
         <div>
-            <Form
-                name="basic"
-                labelCol={{
-                    span: 8,
+            <div>root name is {rootStore.storeName}</div>
+            <Button
+                onClick={() => {
+                    history.push('/about')
                 }}
-                wrapperCol={{
-                    span: 16,
-                }}
-                initialValues={searchForm}
-                onFinish={onFinish}
-                autoComplete="off"
             >
-                <Form.Item label="用户名" name="username">
-                    <Input />
-                </Form.Item>
-
-                <Form.Item label="日期范围" name="date" initialValue={[moment(), moment()]}>
-                    <RangePicker />
-                </Form.Item>
-
-                <Form.Item
-                    wrapperCol={{
-                        offset: 8,
-                        span: 16,
-                    }}
-                >
-                    <Button type="primary" htmlType="submit">
-                        搜索
-                    </Button>
-                </Form.Item>
-            </Form>
+                跳转About页面
+            </Button>
+            <Button
+                onClick={() => {
+                    rootStore.userStore = {
+                        name: '123',
+                    }
+                }}
+            >
+                修改userStore
+            </Button>
+            <Button
+                onClick={() => {
+                    console.log(rootStore.userStore)
+                    console.log(rootStore.userStore.token)
+                }}
+            >
+                查看
+            </Button>
         </div>
     )
-}
+})
 
 export default Home

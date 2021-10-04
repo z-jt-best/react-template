@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { renderRoutes } from 'react-router-config'
+import SelfMenuList from '@/components/SelfMenuList'
 
 export default class SelfLayout extends Component {
     constructor(props) {
@@ -7,11 +8,9 @@ export default class SelfLayout extends Component {
     }
 
     render() {
-        console.log('this.props')
-        console.log(this.props)
         return (
             <div>
-                <div style={{ height: 64, background: 'red' }} />
+                <SelfMenuList />
                 {renderRoutes(this.props.route.routes)}
             </div>
         )
