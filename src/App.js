@@ -1,3 +1,4 @@
+import React, { Suspense } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
 import { configure } from 'mobx'
@@ -21,7 +22,9 @@ configure({
 function App() {
     return (
         <RootContext.Provider value={rootStore}>
-            <BrowserRouter>{renderRoutes(routers)}</BrowserRouter>
+            <Suspense fallback={<div>Loading...</div>}>
+                <BrowserRouter>{renderRoutes(routers)}</BrowserRouter>
+            </Suspense>
         </RootContext.Provider>
     )
 }

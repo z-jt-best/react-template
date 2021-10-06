@@ -1,10 +1,7 @@
-import React, { useState, useEffect, createContext, useContext } from 'react'
-import { Button, Input, Form, DatePicker, Card } from 'antd'
-import moment from 'moment'
-import { makeAutoObservable, autorun } from 'mobx'
-import { observer, useLocalObservable } from 'mobx-react'
+import React, { useContext } from 'react'
+import { Button } from 'antd'
+import { observer } from 'mobx-react'
 import { useHistory } from 'react-router-dom'
-import SelfMenuList from '@/components/SelfMenuList'
 
 import RootContext from '@/store'
 

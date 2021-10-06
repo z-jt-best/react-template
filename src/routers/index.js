@@ -1,6 +1,8 @@
-import Home from '@/views/home'
-import About from '@/views/about'
-import NotFount from '@/views/NotFount'
+import { lazy } from 'react'
+
+const Home = lazy(() => import('@/views/home'))
+const About = lazy(() => import('@/views/about'))
+const NotFount = lazy(() => import('@/views/NotFount'))
 
 import SelfLayout from '@/layout'
 
