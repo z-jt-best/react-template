@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Button } from 'antd'
 import { observer } from 'mobx-react'
 import { useHistory } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import RootContext from '@/store'
 
@@ -36,8 +37,27 @@ const Home = observer(function Home() {
             >
                 查看
             </Button>
+            <TestCom />
         </div>
     )
 })
+
+const TestCom = props => {
+    return <div>123 {props.name}</div>
+}
+
+/**
+ * 对 TestCom 组件的 props 进行限制
+ */
+TestCom.propTypes = {
+    name: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+}
+
+/**
+ * 对 TestCom 组件的 props 提供默认值
+ */
+TestCom.defaultProps = {
+    name: 'zhang',
+}
 
 export default Home
