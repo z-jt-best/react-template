@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import RootContext from '@/store'
+import requestDict from '@/utils/request'
 
 const Home = observer(function Home() {
     const rootStore = useContext(RootContext)
@@ -22,9 +23,7 @@ const Home = observer(function Home() {
             </Button>
             <Button
                 onClick={() => {
-                    rootStore.userStore = {
-                        name: '123',
-                    }
+                    rootStore.userStore = 123
                 }}
             >
                 修改userStore
@@ -37,6 +36,15 @@ const Home = observer(function Home() {
             >
                 查看
             </Button>
+
+            <Button
+                onClick={() => {
+                    requestDict.get('/tabList')
+                }}
+            >
+                发起请求
+            </Button>
+
             <TestCom />
         </div>
     )

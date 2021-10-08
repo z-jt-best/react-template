@@ -1,8 +1,21 @@
 import React from 'react'
-import { makeAutoObservable, observable } from 'mobx'
+import { makeAutoObservable, configure } from 'mobx'
+
 import { message } from 'antd'
 
 import UserStore from './user'
+
+/**
+ * 配置Mobx
+ * @document https://zh.mobx.js.org/configuration.html
+ *  */
+configure({
+    enforceActions: 'always', // 任何状态都能只能通过actions来修改，在实际开发中也包括新建状态。
+    computedRequiresReaction: true,
+    reactionRequiresObservable: false,
+    observableRequiresReaction: false,
+    disableErrorBoundaries: true,
+})
 
 /**
  * Mobx
@@ -14,8 +27,10 @@ class RootStore {
     _userStore
 
     constructor() {
-        makeAutoObservable(this)
         this._userStore = new UserStore(this)
+        makeAutoObservable(this, {
+            _userStore: false,
+        })
     }
 
     /**

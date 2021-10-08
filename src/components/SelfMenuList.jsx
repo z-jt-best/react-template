@@ -7,8 +7,6 @@ import RootContext from '@/store'
 const SelfMenuList = observer(() => {
     const rootContext = useContext(RootContext)
 
-    let result = ''
-
     return (
         <div className="flex items-center bg-green-500 text-white" style={{ height: 64 }}>
             {rootContext.userStore.isLogin ? (

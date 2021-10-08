@@ -16,7 +16,6 @@ const About = observer(function About() {
             <Button type="primary" onClick={toPage}>
                 去首页
             </Button>
-            <div></div>
         </div>
     )
 })
