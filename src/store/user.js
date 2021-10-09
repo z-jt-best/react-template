@@ -1,6 +1,8 @@
 import { makeAutoObservable } from 'mobx'
 
 import { isEmpty } from '@/utils'
+import { permissionApi } from '@/api/user'
+import { setToken, removeToken } from '@/utils/auth'
 
 class UserStore {
     userInfo = {}
@@ -40,26 +42,35 @@ class UserStore {
      */
     *login() {
         try {
-            const result = yield loginApi()
-            this.token = result.token
-            this.userInfo = result.userInfo
+            const result = yield permissionApi.login()
+            this.token = result.data
+            setToken(result.data)
+            this.getUserInfo()
         } catch (e) {
             console.log(e)
         }
     }
-}
 
-// 模拟请求
-const loginApi = () => {
-    return new Promise((resolve, reject) => {
-        resolve({
-            token: '99999',
-            userInfo: {
-                name: 'zhang',
-                age: 12,
-            },
-        })
-    })
+    // 用户信息
+    *getUserInfo() {
+        try {
+            const result = yield permissionApi.userInfo()
+            this.userInfo = result.data
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    // 退出登录
+    *logout() {
+        try {
+            permissionApi.logout()
+            removeToken()
+            this.clear()
+        } catch (e) {
+            console.log(e)
+        }
+    }
 }
 
 export default UserStore
