@@ -6,7 +6,7 @@ import { useMount, useUnmount } from 'ahooks'
 import { makeAutoObservable } from 'mobx'
 import qs from 'qs'
 
-import { isEmpty } from '@/utils'
+import { isEmpty, parseQuery } from '@/utils'
 import { permissionApi } from '@/api/user'
 import { tableApi } from '@/api/table'
 
@@ -15,7 +15,7 @@ const Home = observer(function Home() {
     const location = useLocation()
 
     // useMount(() => {
-    //     const query = qs.parse(location.search, { ignoreQueryPrefix: true })
+    //     const query = parseQuery(location.search)
     //     console.log('query')
     //     console.log(query)
     //     if (isEmpty(query.name)) {
@@ -47,16 +47,9 @@ const LeftContent = observer(function LeftContent() {
     })
 
     const getFail = () => {
-        permissionApi
-            .failRes()
-            .then(res => {
-                console.log(res)
-            })
-            .catch(err => {
-                console.log('err')
-                console.log(err)
-                console.log(err.data)
-            })
+        permissionApi.failRes().then(res => {
+            console.log(res)
+        })
     }
 
     return (

@@ -1,11 +1,11 @@
-import request from '@/utils/request'
+import { baseRequest } from './init'
 
 const tableApi = {
-    getTabList: () => request.get('/tabList'),
+    getTabList: () => baseRequest.get('/tabList'),
 
-    getCardOne: () => request.get('/card/one'),
+    getCardOne: () => baseRequest.get('/card/one'),
 
-    getCardTwo: () => request.get('/card/two'),
+    getCardTwo: () => baseRequest.get('/card/two'),
 }
 
 export { tableApi }

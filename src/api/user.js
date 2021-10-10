@@ -1,13 +1,13 @@
-import request from '@/utils/request'
+import { baseRequest } from './init'
 
 const permissionApi = {
-    login: () => request.post('/login'),
+    login: () => baseRequest.post('/login'),
 
-    logout: () => request.post('/logout'),
+    logout: () => baseRequest.post('/logout'),
 
-    userInfo: () => request.get('/userInfo'),
+    userInfo: () => baseRequest.get('/userInfo'),
 
-    failRes: () => request.post('/fail', {}, { headers: { 'response-status': 401 } }),
+    failRes: () => baseRequest.post('/fail', {}, { headers: { 'response-status': 401 } }),
 }
 
 export { permissionApi }

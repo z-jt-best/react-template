@@ -25,12 +25,17 @@ configure({
 class RootStore {
     storeName = 'RootStore'
     _userStore
+    pageLoading = false // 全局loading
 
     constructor() {
         this._userStore = new UserStore(this)
         makeAutoObservable(this, {
             _userStore: false,
         })
+    }
+
+    setLoading(value) {
+        this.pageLoading = value
     }
 
     /**

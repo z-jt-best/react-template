@@ -64,7 +64,7 @@ class UserStore {
     // 退出登录
     *logout() {
         try {
-            permissionApi.logout()
+            yield permissionApi.logout()
             removeToken()
             this.clear()
         } catch (e) {

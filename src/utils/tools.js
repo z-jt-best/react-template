@@ -14,7 +14,7 @@ class MessageModal {
         this.show = false
     }
 
-    showMessage(msg) {
+    showMessage(msg, closeFn) {
         if (this.show) {
             return
         }
@@ -25,6 +25,7 @@ class MessageModal {
             duration: 2.5,
             onClose: () => {
                 this.show = false
+                closeFn && closeFn()
             },
         })
     }

@@ -5,13 +5,16 @@ import { observer } from 'mobx-react'
 
 import './App.css'
 import routers from './routers/index'
-import RootContext, { rootStore } from '@/store'
+import RootContext, { rootStore } from './store'
+import PageLoading from './components/PageLoading'
 
 const App = observer(function App() {
     return (
         <RootContext.Provider value={rootStore}>
             <Suspense fallback={<div>Loading...</div>}>
-                <BrowserRouter>{renderRoutes(routers)}</BrowserRouter>
+                <PageLoading spinning={rootStore.pageLoading}>
+                    <BrowserRouter>{renderRoutes(routers)}</BrowserRouter>
+                </PageLoading>
             </Suspense>
         </RootContext.Provider>
     )
